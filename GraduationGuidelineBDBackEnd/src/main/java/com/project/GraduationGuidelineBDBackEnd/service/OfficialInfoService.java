@@ -25,5 +25,27 @@ public class OfficialInfoService {
 	public List<UniversityOfficialInfo> getUniversityList(){
 		return repo.findAll();
 	}
+	
+	public UniversityOfficialInfo updateUniversity(Long universityID, UniversityOfficialInfo university) {
+		UniversityOfficialInfo uniInfo = repo.findById(universityID).orElse(null);
+		uniInfo.setFullName(university.getFullName());
+		uniInfo.setShortName(university.getShortName());
+		uniInfo.setUniType(university.getUniType());
+		uniInfo.setUniCategory(university.getUniCategory());
+		uniInfo.setEstDate(university.getEstDate());
+		uniInfo.setUniAddress(university.getUniAddress());
+		uniInfo.setDivision(university.getDivision());
+		uniInfo.setMotto(university.getMotto());
+		uniInfo.setChancellor(university.getChancellor());
+		uniInfo.setVc(university.getVc());
+		uniInfo.setContactNo(university.getContactNo());
+		uniInfo.setWebsite(university.getWebsite());
+		
+		return repo.save(uniInfo);
+	}
+	
+//	public List<UniversityOfficialInfo> getUniversityName(){
+//		return repo.findByName();
+//	}
 
 }

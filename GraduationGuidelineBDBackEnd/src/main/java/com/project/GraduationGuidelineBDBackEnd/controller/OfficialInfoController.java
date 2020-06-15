@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,4 +37,15 @@ public class OfficialInfoController {
 	public List<UniversityOfficialInfo> getUniversityList(){
 		return service.getUniversityList();
 	}
+	
+	@PutMapping("/update/official-info/{universityID}")
+	public UniversityOfficialInfo updateUniversity(@PathVariable Long universityID,
+			@RequestBody UniversityOfficialInfo university) {
+		return service.updateUniversity(universityID, university);
+	}
+	
+//	@GetMapping("/get-university-name")
+//	public List<UniversityOfficialInfo> getUniversityName(){
+//		return service.getUniversityName();
+//	}
 }

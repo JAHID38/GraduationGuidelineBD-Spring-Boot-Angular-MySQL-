@@ -1,21 +1,17 @@
 package com.project.GraduationGuidelineBDBackEnd.entity;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 
 @Entity
 @Table (name = "UniversityOfficialInfo")
@@ -36,6 +32,10 @@ public class UniversityOfficialInfo {
 	private String vc;
 	private String contactNo;
 	private String website;
+	
+	@OneToMany (targetEntity = FacultyInfo.class, cascade = CascadeType.ALL)
+	@JoinColumn (name = "universityID", referencedColumnName = "universityID")
+	private List<FacultyInfo> faculty;
 	
 	public UniversityOfficialInfo() {
 		
@@ -60,6 +60,14 @@ public class UniversityOfficialInfo {
 		this.website = website;
 	}
 	
+	public List<FacultyInfo> getFaculty() {
+		return faculty;
+	}
+
+	public void setFaculty(List<FacultyInfo> faculty) {
+		this.faculty = faculty;
+	}
+
 	public long getUniversityID() {
 		return universityID;
 	}
@@ -70,7 +78,7 @@ public class UniversityOfficialInfo {
 		return fullName;
 	}
 	public void setFullName(String fullName) {
-		this.fullName = fullName.toUpperCase();
+		this.fullName = fullName;
 	}
 	public String getShortName() {
 		return shortName;
@@ -136,7 +144,7 @@ public class UniversityOfficialInfo {
 		return website;
 	}
 	public void setWebsite(String website) {
-		this.website = website;
+		this.website = website.toLowerCase();
 	}
 	
 	
